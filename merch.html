@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merch Store | SKI MASK DUCK</title>
+    <meta name="description" content="Official SKI MASK DUCK merchandise. Wear your favorite meme coin with pride!">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/Logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Additional styles for merch page -->
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--grid-gap);
+        }
+        
+        .product-card {
+            border-radius: var(--border-radius-large);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            overflow: hidden;
+            background-color: var(--colors-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--colors-primary-value);
+            color: var(--colors-text-onPrimary);
+            padding: 5px 10px;
+            border-radius: var(--border-radius-pill);
+            font-weight: 600;
+            font-size: 0.75rem;
+            z-index: 1;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+            background-color: var(--colors-surface);
+        }
+        
+        .product-title {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-current-price {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--colors-primary-value);
+            margin-right: 0.5rem;
+        }
+        
+        .product-original-price {
+            font-weight: 400;
+            font-size: 1rem;
+            color: var(--colors-text-secondary);
+            text-decoration: line-through;
+        }
+        
+        .product-description {
+            color: var(--colors-text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .product-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .product-sizes {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .product-size {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--colors-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .product-size:hover,
+        .product-size.active {
+            background-color: var(--colors-primary-value);
+            color: var(--colors-text-onPrimary);
+            border-color: var(--colors-primary-value);
+        }
+        
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-pill);
+            border: 1px solid var(--colors-border);
+            background-color: var(--colors-background);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+        
+        .filter-button:hover,
+        .filter-button.active {
+            background-color: var(--colors-primary-value);
+            color: var(--colors-text-onPrimary);
+            border-color: var(--colors-primary-value);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="logo" style="background-color: #00336a; padding: 6px 12px; border-radius: 8px;">
+            <img src="assets/images/Logo Text.png" alt="SKI MASK DUCK" style="height: 40px;">
+        </div>
+        
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#about" class="nav-link">About</a>
+            <a href="index.html#tokenomics" class="nav-link">Tokenomics</a>
+            <a href="index.html#how-to-buy" class="nav-link">How to Buy</a>
+            <a href="index.html#roadmap" class="nav-link">Roadmap</a>
+        </nav>
+        
+        <a href="index.html#swap" class="button button-primary">Buy $SKI</a>
+        
+        <button class="mobile-menu-button">
+            <i data-feather="menu"></i>
+        </button>
+    </header>
+    
+    <!-- Merch Store Header -->
+    <section class="section" style="background-color: var(--colors-primary-value); color: var(--colors-text-onPrimary);">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="mb-4">SKI MASK DUCK Merchandise</h1>
+                <p style="font-size: 1.25rem;">Show your support for $SKI with official merchandise</p>
+                <div class="mt-4">
+                    <a href="#products" class="button button-secondary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Merch Store Products -->
+    <section id="products" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Official $SKI Apparel & Accessories</h2>
+                <p>Premium quality merchandise featuring the iconic SKI MASK DUCK</p>
+            </div>
+            
+            <div class="filter-section">
+                <button class="filter-button active">All Products</button>
+                <button class="filter-button">T-Shirts</button>
+                <button class="filter-button">Hoodies</button>
+                <button class="filter-button">Accessories</button>
+                <button class="filter-button">Limited Edition</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">NEW</span>
+                        <img src="assets/images/Logo.png" alt="SKI MASK DUCK T-Shirt">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title">SKI MASK DUCK T-Shirt</div>
+                        <div class="product-price">
+                            <span class="product-current-price">$29.99</span>
+                            <span class="product-original-price">$39.99</span>
+                        </div>
+                        <div class="product-description">Premium cotton t-shirt featuring the iconic SKI MASK DUCK logo.</div>
+                        <div class="product-action">
+                            <div class="product-sizes">
+                                <div class="product-size">S</div>
+                                <div class="product-size active">M</div>
+                                <div class="product-size">L</div>
+                                <div class="product-size">XL</div>
+                            </div>
+                            <button class="button button-primary button-icon">
+                                <i data-feather="shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/Logo.png" alt="SKI MASK DUCK Hoodie">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title">SKI MASK DUCK Hoodie</div>
+                        <div class="product-price">
+                            <span class="product-current-price">$59.99</span>
+                        </div>
+                        <div class="product-description">Warm and comfortable hoodie with embroidered SKI MASK DUCK logo.</div>
+                        <div class="product-action">
+                            <div class="product-sizes">
+                                <div class="product-size">S</div>
+                                <div class="product-size active">M</div>
+                                <div class="product-size">L</div>
+                                <div class="product-size">XL</div>
+                            </div>
+                            <button class="button button-primary button-icon">
+                                <i data-feather="shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">BESTSELLER</span>
+                        <img src="assets/images/Logo.png" alt="SKI MASK DUCK Cap">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title">SKI MASK DUCK Cap</div>
+                        <div class="product-price">
+                            <span class="product-current-price">$24.99</span>
+                        </div>
+                        <div class="product-description">Stylish baseball cap with embroidered SKI MASK DUCK logo.</div>
+                        <div class="product-action">
+                            <div class="product-sizes">
+                                <div class="product-size active">One Size</div>
+                            </div>
+                            <button class="button button-primary button-icon">
+                                <i data-feather="shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/Logo.png" alt="SKI MASK DUCK Mug">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title">SKI MASK DUCK Mug</div>
+                        <div class="product-price">
+                            <span class="product-current-price">$19.99</span>
+                        </div>
+                        <div class="product-description">Ceramic mug featuring the SKI MASK DUCK logo. Perfect for your morning coffee.</div>
+                        <div class="product-action">
+                            <div class="product-sizes">
+                                <div class="product-size active">Standard</div>
+                            </div>
+                            <button class="button button-primary button-icon">
+                                <i data-feather="shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <span class="product-badge">LIMITED</span>
+                        <img src="assets/images/Logo 2.png" alt="SKI MASK DUCK Limited Edition Poster">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title">Limited Edition Poster</div>
+                        <div class="product-price">
+                            <span class="product-current-price">$34.99</span>
+                        </div>
+                        <div class="product-description">Numbered limited edition art print featuring SKI MASK DUCK. Only 500 made.</div>
+                        <div class="product-action">
+                            <div class="product-sizes">
+                                <div class="product-size active">18"x24"</div>
+                            </div>
+                            <button class="button button-primary button-icon">
+                                <i data-feather="shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/images/Logo.png" alt="SKI MASK DUCK Stickers">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-title">SKI MASK DUCK Stickers (5pk)</div>
+                        <div class="product-price">
+                            <span class="product-current-price">$9.99</span>
+                        </div>
+                        <div class="product-description">Set of 5 high-quality vinyl stickers featuring SKI MASK DUCK designs.</div>
+                        <div class="product-action">
+                            <div class="product-sizes">
+                                <div class="product-size active">Standard</div>
+                            </div>
+                            <button class="button button-primary button-icon">
+                                <i data-feather="shopping-cart"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <button class="button button-secondary">Load More Products</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Merch Information Section -->
+    <section class="section" style="background-color: var(--colors-surface);">
+        <div class="container">
+            <div class="grid">
+                <div style="grid-column: span 4;">
+                    <h3 class="mb-3">SHIPPING</h3>
+                    <p>We ship worldwide with tracked delivery. Free shipping on all orders over $75.</p>
+                    <p class="mt-2">Estimated delivery times:</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li>- USA: 3-5 business days</li>
+                        <li>- Europe: 5-7 business days</li>
+                        <li>- Rest of World: 7-14 business days</li>
+                    </ul>
+                </div>
+                
+                <div style="grid-column: span 4;">
+                    <h3 class="mb-3">PAYMENT</h3>
+                    <p>We accept the following payment methods:</p>
+                    <ul style="list-style-type: none; padding-left: 0;">
+                        <li>- Credit/Debit Cards</li>
+                        <li>- PayPal</li>
+                        <li>- Cryptocurrency (ETH, BTC, USDT, $SKI)</li>
+                    </ul>
+                    <p class="mt-2">Get 10% discount when paying with $SKI tokens!</p>
+                </div>
+                
+                <div style="grid-column: span 4;">
+                    <h3 class="mb-3">RETURNS</h3>
+                    <p>Not satisfied? We offer hassle-free returns within 30 days of delivery.</p>
+                    <p class="mt-2">Items must be unworn/unused and in original packaging. Contact support for return authorization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Customer Reviews -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2>Customer Reviews</h2>
+                <p>What our community says about SKI MASK DUCK merchandise</p>
+            </div>
+            
+            <div class="grid">
+                <!-- Review 1 -->
+                <div class="card" style="grid-column: span 4;">
+                    <div class="d-flex gap-2 mb-3">
+                        <img src="assets/images/Pfp.jpg" alt="Customer" style="width: 50px; height: 50px; border-radius: 50%;">
+                        <div>
+                            <strong>CryptoWhale92</strong>
+                            <div style="color: var(--colors-text-secondary);">Verified Buyer</div>
+                        </div>
+                    </div>
+                    <div style="color: var(--colors-primary-value); font-size: 1.25rem; margin-bottom: 0.5rem;">★★★★★</div>
+                    <p>Absolutely love my SKI MASK DUCK hoodie! The quality is amazing and the design gets so many compliments. Will definitely be ordering more merch soon!</p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="card" style="grid-column: span 4;">
+                    <div class="d-flex gap-2 mb-3">
+                        <img src="assets/images/Pfp.jpg" alt="Customer" style="width: 50px; height: 50px; border-radius: 50%;">
+                        <div>
+                            <strong>DeFi_Lover</strong>
+                            <div style="color: var(--colors-text-secondary);">Verified Buyer</div>
+                        </div>
+                    </div>
+                    <div style="color: var(--colors-primary-value); font-size: 1.25rem; margin-bottom: 0.5rem;">★★★★★</div>
+                    <p>The limited edition poster is even better in person than online. High quality print and fast shipping. $SKI community for life!</p>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="card" style="grid-column: span 4;">
+                    <div class="d-flex gap-2 mb-3">
+                        <img src="assets/images/Pfp.jpg" alt="Customer" style="width: 50px; height: 50px; border-radius: 50%;">
+                        <div>
+                            <strong>Anon_Trader</strong>
+                            <div style="color: var(--colors-text-secondary);">Verified Buyer</div>
+                        </div>
+                    </div>
+                    <div style="color: var(--colors-primary-value); font-size: 1.25rem; margin-bottom: 0.5rem;">★★★★☆</div>
+                    <p>T-shirt fits great and the design is awesome. Shipping was a bit slow to my country but worth the wait. Used $SKI tokens for the discount too!</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="button button-secondary">Read All Reviews</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="section" style="background-color: var(--colors-primary-value); color: var(--colors-text-onPrimary);">
+        <div class="container text-center">
+            <h2 class="mb-3">Join the SKI MASK DUCK Community</h2>
+            <p class="mb-4" style="font-size: 1.25rem;">Get exclusive access to limited edition merch drops and special discounts</p>
+            <div class="d-flex justify-between items-center" style="max-width: 500px; margin: 0 auto;">
+                <input type="email" placeholder="Enter your email" style="padding: 1rem; border-radius: var(--border-radius-medium); border: none; width: 70%;">
+                <button class="button button-secondary" style="white-space: nowrap;">Subscribe</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-title">SKI MASK DUCK</div>
+                    <p>The community-driven meme coin that combines anonymity, fun, and financial freedom.</p>
+                    <div class="social-links mt-3">
+                        <a href="#" class="social-link" target="_blank">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank">
+                            <i data-feather="instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank">
+                            <i data-feather="message-circle"></i>
+                        </a>
+                        <a href="#" class="social-link" target="_blank">
+                            <i data-feather="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="footer-title">Quick Links</div>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html#about">About</a></li>
+                        <li class="footer-link"><a href="index.html#tokenomics">Tokenomics</a></li>
+                        <li class="footer-link"><a href="index.html#how-to-buy">How to Buy</a></li>
+                        <li class="footer-link"><a href="index.html#roadmap">Roadmap</a></li>
+                        <li class="footer-link"><a href="index.html#community">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="footer-title">Resources</div>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="whitepaper.html">Whitepaper</a></li>
+                        <li class="footer-link"><a href="audit.html">Audit Report</a></li>
+                        <li class="footer-link"><a href="merch.html">Merch Store</a></li>
+                        <li class="footer-link"><a href="brand.html">Brand Assets</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <div class="footer-title">Legal</div>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="terms.html">Terms of Service</a></li>
+                        <li class="footer-link"><a href="privacy.html">Privacy Policy</a></li>
+                        <li class="footer-link"><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © <span id="year">2023</span> SKI MASK DUCK. All rights reserved. $SKI is a meme coin with no intrinsic value or financial expectation. There is no formal team or roadmap. It's completely community-driven.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Auto update year in copyright
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    
+    <!-- Initialize Feather Icons -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+        });
+    </script>
+    
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Additional Merch Page JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Product size selection
+            const productSizes = document.querySelectorAll('.product-size');
+            
+            productSizes.forEach(size => {
+                size.addEventListener('click', function() {
+                    // Remove active class from siblings
+                    const siblings = this.parentElement.querySelectorAll('.product-size');
+                    siblings.forEach(sib => sib.classList.remove('active'));
+                    
+                    // Add active class to clicked size
+                    this.classList.add('active');
+                });
+            });
+            
+            // Filter buttons
+            const filterButtons = document.querySelectorAll('.filter-button');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all filter buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Filter products (in a real implementation)
+                    // This would filter the products based on the selected category
+                    console.log('Filter selected:', this.textContent);
+                });
+            });
+            
+            // Add to cart functionality
+            const addButtons = document.querySelectorAll('.product-action .button');
+            
+            addButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productTitle = productCard.querySelector('.product-title').textContent;
+                    const productSize = productCard.querySelector('.product-size.active').textContent;
+                    
+                    // In a real implementation, this would add the product to a cart
+                    alert(`Added to cart: ${productTitle} (Size: ${productSize})`);
+                    
+                    // Change button text temporarily
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i data-feather="check"></i> Added';
+                    feather.replace();
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        feather.replace();
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

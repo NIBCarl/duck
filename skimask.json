@@ -1,0 +1,55 @@
+{
+    "design_system": {
+      "font": {
+        "family": "Fantasy-style Display Font (e.g., 'Luckiest Guy', 'IM Fell English SC', or custom)",
+        "weight": "bold",
+        "style": "uppercase with stylized, playful cuts",
+        "spacing": "tight tracking, zero kerning"
+      },
+      "text_effects": {
+        "outline": {
+          "enabled": true,
+          "color": "#ffffff",
+          "thickness": "2px"
+        },
+        "shadow": {
+          "enabled": true,
+          "color": "#000000",
+          "offset_x": "2px",
+          "offset_y": "2px",
+          "blur": "0px"
+        },
+        "stroke_variation": "deliberate jagged/inconsistent edges for a handmade/cartoon effect"
+      },
+      "color_scheme": {
+        "primary_text_color": "#f5c013",  // bold gold/yellow
+        "accent_color": "#ffffff",        // strong white for highlights and outlines
+        "background_color": "transparent" // for web/PNG usage
+      },
+      "layout": {
+        "alignment": "horizontal stack",
+        "text_block": [
+          {
+            "content": "SKI MASK",
+            "font_size": "48px",
+            "position": "top"
+          },
+          {
+            "content": "DUCK",
+            "font_size": "72px",
+            "font_weight": "extra-bold",
+            "position": "bottom",
+            "emphasis": "larger scale, visual anchor"
+          }
+        ],
+        "character_spacing": "-1px",
+        "line_spacing": "0.8em"
+      },
+      "style_notes": {
+        "theme": "playful yet edgy",
+        "vibe": "cartoonish, crypto-inspired",
+        "use_case": "branding/logo design, mascot-based text"
+      }
+    }
+  }
+  

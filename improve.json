@@ -1,0 +1,209 @@
+{
+    "designSystem": {
+      "name": "Playful Crypto Meme Landing",
+      "description": "A vibrant and engaging design system for a meme-centric cryptocurrency project. It combines a playful, cartoonish aesthetic with clean, modern UI components. The core principle is to be fun and approachable, using bold colors, expressive typography, and subtle animations to build community trust and excitement.",
+      "colors": {
+        "palette": {
+          "primary": {
+            "value": "#1E63FF",
+            "description": "A strong, energetic blue used for all primary calls-to-action, headings, and interactive elements."
+          },
+          "secondary": {
+            "value": "#FCD34D",
+            "description": "A warm yellow, derived from the duck mascot, used for accents, highlights, or secondary branding elements like the coin."
+          },
+          "background": {
+            "value": "#FFFFFF",
+            "description": "Clean white for main content areas to ensure readability and contrast."
+          },
+          "surface": {
+            "primary": "#F8F9FC",
+            "secondary": "#E8EDF5",
+            "description": "Primary surface is a very light off-white/gray for cards. Secondary is a slightly darker gray for footers or distinct sections."
+          },
+          "text": {
+            "primary": "#1F2937",
+            "secondary": "#6B7280",
+            "onPrimary": "#FFFFFF",
+            "heading": "var(--colors-primary-value)",
+            "description": "Dark gray for body text, lighter gray for subtitles. White text is used on colored backgrounds. Headings use the primary blue."
+          },
+          "heroBackground": {
+            "gradient": "linear-gradient(180deg, #A8D5E2 0%, #E0F2F1 100%)",
+            "description": "A light, cool-toned gradient for the hero section to evoke a sky or mountain atmosphere."
+          }
+        }
+      },
+      "typography": {
+        "fontFamily": {
+          "display": "'Bangers', 'Luckiest Guy', 'Comic Sans MS', cursive",
+          "body": "'Poppins', 'Inter', 'sans-serif'",
+          "description": "A dual-font strategy. A bold, chunky, and playful 'display' font for all major headings to establish the meme character. A clean, rounded, and highly readable 'body' font for all other text."
+        },
+        "styles": [
+          {
+            "name": "H1 (Hero Title)",
+            "fontFamily": "var(--typography-fontFamily-display)",
+            "fontWeight": 400,
+            "fontSize": "clamp(3rem, 8vw, 5.5rem)",
+            "lineHeight": 1.1,
+            "textTransform": "uppercase",
+            "color": "var(--colors-text-onPrimary)",
+            "textShadow": "3px 3px 0px rgba(0, 0, 0, 0.15)",
+            "description": "Massive, impactful heading for the main brand name in the hero section."
+          },
+          {
+            "name": "H2 (Section Title)",
+            "fontFamily": "var(--typography-fontFamily-display)",
+            "fontWeight": 400,
+            "fontSize": "clamp(2rem, 5vw, 3rem)",
+            "lineHeight": 1.2,
+            "textTransform": "uppercase",
+            "color": "var(--colors-primary-value)",
+            "textShadow": "2px 2px 0px #D6E3FF",
+            "description": "Large section titles like 'GET YOUR $SKI TOKENS'. The subtle two-tone shadow adds depth."
+          },
+          {
+            "name": "Body",
+            "fontFamily": "var(--typography-fontFamily-body)",
+            "fontWeight": 400,
+            "fontSize": "1rem",
+            "lineHeight": 1.7,
+            "color": "var(--colors-text-primary)",
+            "description": "Standard paragraph text."
+          },
+          {
+            "name": "Subheading",
+            "fontFamily": "var(--typography-fontFamily-body)",
+            "fontWeight": 500,
+            "fontSize": "1.125rem",
+            "lineHeight": 1.6,
+            "color": "var(--colors-text-secondary)",
+            "description": "Used for text directly under a large heading."
+          }
+        ]
+      },
+      "layout": {
+        "containerMaxWidth": "1100px",
+        "gridGap": "24px",
+        "sectionPadding": "clamp(60px, 10vw, 100px) 24px",
+        "responsiveness": {
+          "description": "The layout should be fully responsive. Multi-column grids (like the 3-card layout for tokenomics) should stack into a single column on mobile screens (e.g., below 768px). The vertical roadmap should remain centered and readable on all devices."
+        }
+      },
+      "components": {
+        "header": {
+          "style": "Sticky with backdrop blur",
+          "height": "80px",
+          "backgroundColor": "rgba(255, 255, 255, 0.7)",
+          "backdropFilter": "blur(12px)",
+          "borderBottom": "1px solid rgba(0, 0, 0, 0.05)",
+          "boxShadow": "0 2px 10px rgba(0, 0, 0, 0.02)"
+        },
+        "button": {
+          "base": {
+            "borderRadius": "12px",
+            "padding": "14px 28px",
+            "fontWeight": 600,
+            "fontFamily": "var(--typography-fontFamily-body)",
+            "transition": "all 0.2s ease-in-out",
+            "transform": "scale(1)",
+            "boxShadow": "0 4px 6px rgba(0, 0, 0, 0.1)"
+          },
+          "variants": {
+            "primary": {
+              "backgroundColor": "var(--colors-primary-value)",
+              "color": "var(--colors-text-onPrimary)",
+              "hover": {
+                "transform": "scale(1.05) translateY(-2px)",
+                "boxShadow": "0 7px 14px rgba(30, 99, 255, 0.3)",
+                "brightness": 1.1
+              }
+            },
+            "secondary": {
+              "backgroundColor": "var(--colors-background-value)",
+              "color": "var(--colors-primary-value)",
+              "border": "2px solid var(--colors-primary-value)",
+              "hover": {
+                "transform": "scale(1.05) translateY(-2px)",
+                "boxShadow": "0 7px 14px rgba(0, 0, 0, 0.1)"
+              }
+            }
+          }
+        },
+        "card": {
+          "backgroundColor": "var(--colors-surface-primary)",
+          "borderRadius": "20px",
+          "padding": "24px",
+          "border": "1px solid #E5E7EB",
+          "boxShadow": "0 4px 12px rgba(0, 0, 0, 0.04)",
+          "transition": "transform 0.3s ease, box-shadow 0.3s ease",
+          "hover": {
+            "transform": "translateY(-5px)",
+            "boxShadow": "0 8px 20px rgba(0, 0, 0, 0.08)"
+          }
+        },
+        "roadmap": {
+          "lineColor": "#D6E3FF",
+          "lineWidth": "3px",
+          "dot": {
+            "size": "16px",
+            "backgroundColor": "var(--colors-primary-value)",
+            "border": "4px solid white",
+            "boxShadow": "0 0 0 3px var(--colors-primary-value)"
+          },
+          "card": {
+            "extends": "card",
+            "animation": "fadeInUp on scroll"
+          }
+        },
+        "accordion": {
+          "border": "1px solid #E5E7EB",
+          "borderRadius": "12px",
+          "itemPadding": "20px",
+          "hover": {
+            "backgroundColor": "#F8F9FC"
+          },
+          "icon": {
+            "transition": "transform 0.3s ease"
+          },
+          "openState": {
+            "icon": { "transform": "rotate(180deg)" }
+          }
+        }
+      },
+      "effects": {
+        "borderRadius": {
+          "medium": "12px",
+          "large": "20px"
+        },
+        "boxShadow": {
+          "subtle": "0 2px 4px rgba(0, 0, 0, 0.03)",
+          "default": "0 4px 12px rgba(0, 0, 0, 0.04)",
+          "lifted": "0 8px 20px rgba(0, 0, 0, 0.08)"
+        }
+      },
+      "animations": {
+        "onScrollFadeIn": {
+          "opacity": 0,
+          "transform": "translateY(20px)",
+          "transition": "opacity 0.6s ease-out, transform 0.6s ease-out",
+          "inView": {
+            "opacity": 1,
+            "transform": "translateY(0)"
+          },
+          "description": "Apply this to sections or individual cards to make the page feel dynamic as the user scrolls."
+        },
+        "heroAnimation": {
+          "mascot": "Subtle floating/bobbing animation",
+          "backgroundElements": "Slow parallax scroll effect on clouds/mountains",
+          "description": "Adds life to the hero section, making it more captivating."
+        }
+      },
+      "illustrationStyle": {
+        "type": "Vector Cartoon",
+        "characteristics": ["Clean lines", "Solid color fills", "Bold outlines", "Friendly and expressive character design"],
+        "usage": "Used for the main hero background, standalone mascot images, and potentially for icons or spot illustrations throughout the site."
+      }
+    }
+  }
